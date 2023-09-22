@@ -38,7 +38,7 @@ function Ball:collide(paddle)
         return false
     end
 
-    Sounds.paddle:play()
+    -- Sounds.paddle:play()
 
     return true
 end
@@ -47,29 +47,29 @@ function Ball:bounceWall()
     if self.y <= 0 then
         self.y = 0
         self.dy = -self.dy
-        Sounds.wall:play()
+        -- Sounds.wall:play()
     end
 
     if self.y >= HEIGHT_WINDOW - self.h then
         self.y = HEIGHT_WINDOW - self.h
         self.dy = -self.dy
-        Sounds.wall:play()
+        -- Sounds.wall:play()
     end
 end
 
 function Ball:bouncePaddle(paddleX)
     self.dx = -self.dx * BALL_VELOCITY_INCREMENT
 
-    if self.dx < -800 or self > 800 then
-        self.dx = 800
+    if self.dx < -1000 or self.dx > 1000 then
+        self.dx = 1000
     end
 
     self.x = paddleX
 
     if self.dy < 0 then
-        self.dy = -math.random(-100, 100)
+        self.dy = -math.random(-150, 150)
     else
-        self.dy = math.random(-100, 100)
+        self.dy = math.random(-150, 150)
     end
 end
 

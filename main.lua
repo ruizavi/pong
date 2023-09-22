@@ -17,9 +17,9 @@ BALL_VELOCITY_INCREMENT = 1.10
 GAME_STATE = 'CLOSE'
 
 Sounds = {
-    paddle = love.audio.newSource("sounds/paddle_hit.wav"),
-    hit = love.audio.newSource("sounds/score.wav"),
-    wall = love.audio.newSource("sounds/wall_hit.wav")
+    paddle = love.audio.newSource("sounds/paddle_hit.wav", "static"),
+    hit = love.audio.newSource("sounds/score.wav", "static"),
+    wall = love.audio.newSource("sounds/wall_hit.wav", "static")
 }
 
 local ball = Ball()
@@ -41,7 +41,7 @@ function love.load()
 
     math.randomseed(seed)
 
-    local dx = math.random(2) == 1 and 100 or -100
+    local dx = math.random(2) == 1 and 150 or -150
     local dy = math.random(-50, 50)
 
     ball:init(WIDTH_WINDOW / 2, HEIGHT_WINDOW / 2 - (BALL_HEIGHT / 2), BALL_WIDTH, BALL_HEIGHT, dx, dy)
@@ -59,7 +59,7 @@ function love.update(dt)
             p2_score = p2_score + 1
             GAME_STATE = 'POINT'
             ball:reset(2)
-            Sounds.hit:play()
+            -- Sounds.hit:play()
         end
         if ball:collide(player1) then
             ball:bouncePaddle(player1.x + player1.w)
@@ -69,7 +69,7 @@ function love.update(dt)
             p1_score = p1_score + 1
             GAME_STATE = 'POINT'
             ball:reset(1)
-            Sounds.hit:play()
+            -- Sounds.hit:play()
         end
         if ball:collide(player2) then
             ball:bouncePaddle(player2.x - player2.w)
